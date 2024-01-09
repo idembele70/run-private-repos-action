@@ -3,7 +3,7 @@ name: playmaker1710 run outside
   on:
     push:
       branches:
-        - master
+        - main
 
   jobs:
     instauto:
