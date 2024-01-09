@@ -1,5 +1,5 @@
 
-  name: playmaker1710
+  name: playmaker1710 instauto
 
   on:
     push: 
@@ -11,12 +11,13 @@
       runs-on: ubuntu-latest
 
       steps:
+        - run: git clone https://github.com/idembele70/instaauto/
+        - run: cd instauto
         - uses: actions/checkout@v3
         - uses: actions/setup-node@v3
           with:
             node-version: 18
             cache: 'npm'
-        - run: git clone https://github.com/idembele70/instaauto/
-        - run: cd instauto
+        - run: 'npm i'
         - run: chmod +x stop_node_playmaker1710.sh
         - run: ./stop_node_playmaker1710.sh
