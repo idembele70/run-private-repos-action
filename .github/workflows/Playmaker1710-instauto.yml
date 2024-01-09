@@ -5,9 +5,13 @@
     push:
       branches:
         - main
+    schedule:
+      # At 00:00 on Friday.
+      # https://crontab.guru/every-friday
+       - cron: "0 0 * * FRI"
 
   jobs:
-    instauto:
+    playmaker1710:
       runs-on: ubuntu-latest
       steps:
         - name: checkout code
@@ -21,5 +25,5 @@
             node-version: 18
             cache: 'npm'
         - run: npm i
-        - run: chmod +x stop_node_playmaker1710.sh
-        - run: ./stop_node_playmaker1710.sh
+        - run: chmod +x ./playmaker1710/stop_and_push.sh
+        - run: ./playmaker1710/stop_and_push.sh
