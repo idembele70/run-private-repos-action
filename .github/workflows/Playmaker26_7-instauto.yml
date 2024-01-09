@@ -1,0 +1,29 @@
+
+  name: playmaker26_7 instauto
+  on:
+    workflow_dispatch:
+    push:
+      branches:
+        - main
+    # “At minute 0 past every 11th hour.”
+    # https://crontab.guru/#0_*/11_*_*_*
+    schedule:
+      - cron: 0 */11 * * *
+
+  jobs:
+    playmaker26_7:
+      runs-on: ubuntu-latest
+      steps:
+        - name: checkout code
+          uses: actions/checkout@v3
+          with:
+            repository: idembele70/instaauto
+            token: ${{secrets.MY_GH_TOKEN}}
+        - name: cache dependencies
+          uses: actions/setup-node@v3
+          with:
+            node-version: 18
+            cache: 'npm'
+        - run: npm i
+        - run: chmod +x ./playmaker26_7/stop_and_push.sh
+        - run: ./playmaker26_7/stop_and_push.sh
