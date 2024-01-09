@@ -1,23 +1,25 @@
 
   name: playmaker1710 instauto
-
   on:
-    push: 
+    workflow_dispatch:
+    push:
       branches:
-      - main
+        - main
 
   jobs:
     instauto:
       runs-on: ubuntu-latest
-
       steps:
-        - run: git clone https://github.com/idembele70/instaauto/
-        - run: cd instauto
-        - uses: actions/checkout@v3
-        - uses: actions/setup-node@v3
+        - name: checkout code
+          uses: actions/checkout@v3
+          with:
+            repository: idembele70/instaauto
+            token: ${{secrets.MY_GH_TOKEN}}
+        - name: cache dependencies
+          uses: actions/setup-node@v3
           with:
             node-version: 18
             cache: 'npm'
-        - run: 'npm i'
+        - run: npm i
         - run: chmod +x stop_node_playmaker1710.sh
         - run: ./stop_node_playmaker1710.sh
