@@ -4,11 +4,11 @@
     workflow_dispatch:
     push:
       branches:
-        - main
+        - dev
     # “At minute 0 past every 11th hour.”
     # https://crontab.guru/#0_*/11_*_*_*
-    schedule:
-      - cron: 0 */11 * * *
+   # schedule:
+    #  - cron: 0 */11 * * *
 
   jobs:
     playmaker26_7:
